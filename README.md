@@ -58,6 +58,9 @@ Contributions are welcome! If you have any suggestions, feel free to fork the re
 ## License 📜
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Note 📌
+This project is non-commercial and intended for personal or educational use only.
+
 ## Contact 📬
 If you have any questions or need further assistance, feel free to contact me:
 
