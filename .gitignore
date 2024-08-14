@@ -1,0 +1,16 @@
+# Node modules
+/node_modules/
+
+# Environment variables
+.env
+process.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Build output
+open/bundle.js
