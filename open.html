@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,3 +55,60 @@
     <script src="open.js" defer></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive 3D Earth and Weather Information. Get real-time weather updates and explore the globe in 3D.">
+    <meta name="keywords" content="3D Earth, Weather, Real-time Weather, Weather API, Interactive Globe">
+    <meta name="author" content="Hari Veerendranath Venkata Sathwik">
+    <meta name="robots" content="index, follow">
+    <title>Weathergit</title>
+    <link rel="stylesheet" type="text/css" href="open.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 id="site-title">Weathergit</h1>
+        <div id="search-container">
+            <input type="text" id="location-input" placeholder="Enter location" aria-label="Location input">
+            <button id="search-button" aria-label="Search location" role="button" tabindex="0">Search</button>
+        </div>
+    </header>
+    <div id="cesiumContainer"></div>
+    <div class="loading">
+        <div class="loader"></div>
+        Loading...
+    </div>
+    <div id="weather-info">
+        <div id="temperature"></div>
+        <div id="humidity"></div>
+        <div id="wind-speed"></div>
+        <div id="condition"></div>
+        <div id="forecast"></div>
+        <div id="time-date"></div>
+    </div>
+    <div id="controls">
+        <button id="tempButton" tabindex="0">Temperature</button>
+        <button id="windButton" tabindex="0">Wind</button>
+        <button id="rainButton" tabindex="0">Rain</button>
+        <button id="satelliteButton" tabindex="0">Satellite View</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Weathergit. All rights reserved.</p>
+    </footer>
+    <!-- CesiumJS Library -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Cesium.js" defer></script>
+    <!-- Additional Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.3.0/papaparse.min.js" defer></script>
+    <script src="https://unpkg.com/to-geojson" defer></script>
+    <script src="https://unpkg.com/xlsx@0.17.0/dist/xlsx.full.min.js" defer></script>
+    <script src="open.js" defer></script>
+</body>
+</html>
+>>>>>>> 9cd96adae30b542c8c3beb1bc71a0c22526d6d95
