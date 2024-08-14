@@ -10,7 +10,7 @@ Welcome to Weathergit, an interactive 3D Earth and weather application that prov
 - **Multiple Views:** Toggle between different views like Temperature, Wind, Rain, and Satellite.
 
 ## Demo 🎥
-Check out the live demo of Weathergit [here](#).
+Check out the live demo of Weathergit [here](https://www.youtube.com/watch?v=pwTF-Q0yC9E).
 
 ## Installation & Setup 🚀
 To run this project locally, follow these steps:
