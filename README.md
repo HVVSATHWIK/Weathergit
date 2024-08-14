@@ -17,26 +17,26 @@ To run this project locally, follow these steps:
 
 ### Prerequisites
 - A modern web browser
-- An API key from OpenWeatherMap and Gemini AI API
+- API keys from OpenWeatherMap and Gemini AI API
 
 ### Steps
-1. Clone the repository:
+1. **Clone the repository:**
     ```bash
     git clone https://github.com/HVVSATHWIK/Weathergit.git
     ```
 
-2. Navigate to the project directory:
+2. **Navigate to the project directory:**
     ```bash
     cd Weathergit
     ```
 
-3. Open `open.js` and replace the placeholders with your API keys:
+3. **Open `open.js` and replace the placeholders with your API keys:**
     ```javascript
     const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
     const geminiApiKey = 'YOUR_GEMINI_API_KEY';
     ```
 
-4. Open `open.html` in your web browser:
+4. **Open `open.html` in your web browser:**
     ```bash
     open open.html
     ```
@@ -47,7 +47,7 @@ To run this project locally, follow these steps:
 - **Get AI Advice:** After fetching weather data, the application will provide AI-powered advice on whether it's advisable to go outside.
 
 ## Contributing 🤝
-Contributions are welcome! If you have any suggestions, feel free to fork the repository, create a feature branch, and submit a pull request.
+Contributions are welcome! If you have any suggestions or improvements, feel free to fork the repository, create a feature branch, and submit a pull request.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/YourFeature`)
