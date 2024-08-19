@@ -1,9 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     const viewer = new Cesium.Viewer('cesiumContainer', {
-        imageryProvider: new Cesium.OpenStreetMapImageryProvider({
-            url: 'https://a.tile.openstreetmap.org/'
+        imageryProviderViewModel: new Cesium.ProviderViewModel({
+            selectedImageryProviderViewModel: new Cesium.ImageryProviderViewModel({
+                providerViewModel: new Cesium.OpenStreetMapImageryProvider({
+                    url : 'https://a.tile.openstreetmap.org/'
+                }),
+                selectedImageryProvider: Cesium.OpenStreetMapImageryProvider
+            })
         }),
-        baseLayerPicker: false,
+        selectedImageryProviderViewModel: Cesium.OpenStreetMapImageryProvider,
         timeline: false,
         animation: false
     });
@@ -20,11 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const forecast = document.getElementById('forecast');
     const timeDate = document.getElementById('time-date');
 
-    // Access environment variables
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
     const geminiApiKey = process.env.REACT_APP_GENAI_API_KEY;
-    console.log('Weather API Key:', apiKey);
-    console.log('Gemini API Key:', geminiApiKey);
 
     let cesiumBillboard;
 
@@ -38,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     async function fetchWithRetry(url, options, retries = 3, delay = 2000) {
-        for (let i = 0; i < retries; i++) {
+        for (let attempt = 0; attempt < retries; attempt++) {
             try {
                 const response = await fetch(url, options);
                 if (!response.ok) {
-                    if (response.status === 503 && i < retries - 1) {
+                    if (response.status === 503 && attempt < retries - 1) {
                         await new Promise(resolve => setTimeout(resolve, delay));
                     } else {
                         throw new Error(`Request failed with status ${response.status}`);
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return await response.json();
                 }
             } catch (error) {
-                if (i === retries - 1) throw error;
+                if (attempt === retries - 1) throw error;
             }
         }
     }
@@ -62,26 +64,20 @@ document.addEventListener('DOMContentLoaded', function () {
             const weatherData = await weatherResponse.json();
             updateWeatherInfo(weatherData);
 
-            const aiData = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiApiKey}`, {
+            const aiResponse = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiApiKey}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    "contents": [
-                        {
-                            "parts": [
-                                { "text": `Based on the weather conditions - Temperature: ${weatherData.main.temp}°C, Humidity: ${weatherData.main.humidity}%, Wind Speed: ${weatherData.wind.speed} m/s, Condition: ${weatherData.weather[0].description} - is it advisable to go outside?` }
-                            ]
-                        }
-                    ]
+                    contents: [{
+                        parts: [{ text: `Based on the weather conditions - Temperature: ${weatherData.main.temp}°C, Humidity: ${weatherData.main.humidity}%, Wind Speed: ${weatherData.wind.speed} m/s, Condition: ${weatherData.weather[0].description} - is it advisable to go outside?` }]
+                    }]
                 })
             });
 
-            console.log(aiData);
+            console.log(aiResponse);
 
-            if (aiData.choices && aiData.choices.length > 0) {
-                const advice = aiData.choices[0].text.trim();
+            if (aiResponse.choices && aiResponse.choices.length > 0) {
+                const advice = aiResponse.choices[0].text.trim();
                 forecast.textContent = `AI Advice: ${advice}`;
             } else {
                 forecast.textContent = 'AI Advice: No advice available at the moment or The server is too busy at the moment';
@@ -99,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     async function searchLocation() {
-        const location = document.getElementById('location-input').value;
+        const location = document.getElementById('location-input').value.trim();
         if (!location) {
             handleError('You need to provide a location first.');
             return;

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="open.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Material+Icons&display=swap" rel="stylesheet">
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.91/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
@@ -19,7 +19,9 @@
         <h1 id="site-title">Weathergit</h1>
         <div id="search-container">
             <input type="text" id="location-input" placeholder="Enter location" aria-label="Location input">
-            <button id="search-button" aria-label="Search location" role="button" tabindex="0">Search</button>
+            <button id="search-button" aria-label="Search location" role="button" tabindex="0">
+                <span class="material-icons">search</span>
+            </button>
         </div>
     </header>
     <div id="cesiumContainer"></div>
@@ -36,10 +38,10 @@
         <div id="time-date"></div>
     </div>
     <div id="controls">
-        <button id="tempButton" tabindex="0">Temperature</button>
-        <button id="windButton" tabindex="0">Wind</button>
-        <button id="rainButton" tabindex="0">Rain</button>
-        <button id="satelliteButton" tabindex="0">Satellite View</button>
+        <button id="tempButton" tabindex="0"><span class="material-icons">thermostat</span> Temperature</button>
+        <button id="windButton" tabindex="0"><span class="material-icons">air</span> Wind</button>
+        <button id="rainButton" tabindex="0"><span class="material-icons">umbrella</span> Rain</button>
+        <button id="satelliteButton" tabindex="0"><span class="material-icons">satellite</span> Satellite View</button>
     </div>
     <footer>
         <p>&copy; 2024 Weathergit. All rights reserved.</p>
