@@ -1,16 +1,47 @@
-# Node modules
+# Node modules directory
 /node_modules/
 
-# Environment variables
-.env
-process.env
+# Webpack build output
+/open/bundle.js
+
+# Environment variable file (contains sensitive information)
+/.env
 
 # OS-specific files
 .DS_Store
 Thumbs.db
 
-# Log files
+# Logs
 *.log
 
-# Build output
-open/bundle.js
+# Temporary files
+*.tmp
+*.swp
+
+# IDE or editor specific files
+.vscode/
+.idea/
+
+# Compiled files
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Dependency directories
+bower_components/
+
+# npm lock files (optional, based on your preference)
+package-lock.json
+yarn.lock
+
+# Build output (if you have additional build or distribution directories)
+dist/
+build/
+
+# Files created by tools
+coverage/
+
+# JavaScript source files if using Webpack
+/open.js
