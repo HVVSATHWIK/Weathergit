@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         parts: [{ text: `Based on the weather conditions - Temperature: ${weatherData.main.temp}°C, Humidity: ${weatherData.main.humidity}%, Wind Speed: ${weatherData.wind.speed} m/s, Condition: ${weatherData.weather[0].description} - is it advisable to go outside?` }]
                     }]
                 })
-            }).then(response => response.json());
+            });
 
             console.log(aiResponse);
 
