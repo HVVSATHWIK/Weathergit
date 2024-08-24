@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const viewer = new Cesium.Viewer('cesiumContainer', {
-        imageryProviderViewModel: new Cesium.ProviderViewModel({
-            selectedImageryProviderViewModel: new Cesium.ImageryProviderViewModel({
-                providerViewModel: new Cesium.OpenStreetMapImageryProvider({
-                    url: 'https://a.tile.openstreetmap.org/'
-                }),
-                selectedImageryProvider: Cesium.OpenStreetMapImageryProvider
-            })
+        imageryProvider: new Cesium.OpenStreetMapImageryProvider({
+            url: 'https://a.tile.openstreetmap.org/'
         }),
-        selectedImageryProviderViewModel: Cesium.OpenStreetMapImageryProvider,
         timeline: false,
         animation: false
     });
@@ -43,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let attempt = 0; attempt < retries; attempt++) {
             try {
                 const response = await fetch(url, options);
-                if (!response.ok) {
+                if (response.ok) {
+                    return await response.json();
+                } else {
                     if (response.status === 503 && attempt < retries - 1) {
                         await new Promise(resolve => setTimeout(resolve, delay));
                     } else {
                         throw new Error(`Request failed with status ${response.status}`);
                     }
-                } else {
-                    return await response.json();
                 }
             } catch (error) {
                 if (attempt === retries - 1) throw error;
@@ -74,10 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             });
 
-            console.log(aiResponse);
-
-            if (aiResponse.choices && aiResponse.choices.length > 0) {
-                const advice = aiResponse.choices[0].text.trim();
+            const aiData = await aiResponse.json();
+            if (aiData.choices && aiData.choices.length > 0) {
+                const advice = aiData.choices[0].text.trim();
                 forecast.textContent = `AI Advice: ${advice}`;
             } else {
                 forecast.textContent = 'AI Advice: No advice available at the moment or The server is too busy at the moment';
