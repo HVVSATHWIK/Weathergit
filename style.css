@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  overflow: hidden; /* To prevent scrollbars from the page itself */
+}
+
+canvas {
+  display: block; /* To prevent potential margin issues */
+}
+
+.overlay {
+  position: absolute; /* Use absolute for positioning relative to the body */
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10; /* Ensure it's above the canvas */
+  width: 300px; /* Give it a default width */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Snap scrolling */
+  border: 1px solid #ccc;
+}
+
+.carousel > div {
+  flex: 0 0 auto; /* Each item takes its content width */
+  scroll-snap-align: center; /* Snap items to the center */
+  padding: 15px;
+  margin-right: 10px; /* Spacing between items */
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+/* Optional: Style for scrollbar to make it less obtrusive */
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
