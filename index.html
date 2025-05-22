@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Augmented Earth Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div class="overlay carousel" id="info-panel">
+      <div>Overlay Item 1</div>
+      <div>Overlay Item 2</div>
+      <div>Overlay Item 3</div>
+      <div>Overlay Item 4</div>
+      <div>Overlay Item 5</div>
+    </div>
+
+    <div class="timeline-container" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 20; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+      <label for="timeline-slider" style="display: block; text-align: center; margin-bottom: 5px;">Year: <span id="timeline-year">2025</span></label>
+      <input type="range" min="1900" max="2025" value="2025" id="timeline-slider" style="width: 300px;" />
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
