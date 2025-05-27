@@ -76,11 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log(aiResponse);
 
-            if (aiResponse.choices && aiResponse.choices.length > 0) {
-                const advice = aiResponse.choices[0].text.trim();
+            if (aiResponse.candidates && aiResponse.candidates.length > 0 &&
+                aiResponse.candidates[0].content && aiResponse.candidates[0].content.parts &&
+                aiResponse.candidates[0].content.parts.length > 0) {
+                const advice = aiResponse.candidates[0].content.parts[0].text.trim();
                 forecast.textContent = `AI Advice: ${advice}`;
             } else {
-                forecast.textContent = 'AI Advice: No advice available at the moment or The server is too busy at the moment';
+                console.error('Unexpected Gemini API response structure:', aiResponse);
+                forecast.textContent = 'AI Advice: Could not retrieve advice due to an unexpected response format.';
             }
 
             const speech = new SpeechSynthesisUtterance(forecast.textContent);
